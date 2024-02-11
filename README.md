@@ -15,12 +15,12 @@ Testo qui
 
 ## Usare l'inizializzatore
 
-Testo qui.
+L'inizializzatore è un programma batch
 
 ## Modificare il corpo del documento
 
 Testo qui.
 
-# Compilare il documento
+## Compilare il documento
 
 Testo qui.
