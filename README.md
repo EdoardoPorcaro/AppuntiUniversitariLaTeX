@@ -1,5 +1,9 @@
 # Scrivere appunti universitari con $\LaTeX\$
 
+> _Abbiamo visto che la programmazione è un’arte, perché richiede conoscenza, applicazione, abilità e ingegno, ma soprattutto per la bellezza degli oggetti che produce._ – Donald Ervin Knuth
+
+> _Non esistono libri morali o immorali. I libri sono scritti bene o scritti male. Questo è tutto._ – Oscar Wilde
+
 Questo documento è un'estesa guida al contenuto del presente archivio, un _modello completo e versatile indirizzato principalmente a studenti universitari che siano interessati a prendere appunti di lezioni e/o esercitazioni usando_ $\LaTeX\$. Si può navigare agevolmente tra le sezioni della presente guida a partire dall'indice dei contenuti seguente.
 
 ## Indice dei contenuti
@@ -49,4 +53,34 @@ Testo qui.
 
 ## Crediti
 
-``````
+Fa ridere che, per quanto in tutta la guida abbia predicato la superiorità di programmi di composizione tipografica come $\LaTeX\$, mi sia ritrovato a scrivere la stessa guida in Markdown, ma, ahimè, così vuole GitHub.
+
+Come se ciò non bastasse, di seguito farò uso della mia "firma" ASCII-art per citarmi nei crediti del progetto. Questa stessa firma, qualora qualcuno non se ne sia ancora accorto, è presente anche nel modello in sé nonché nello script batch.
+
+```
+%------------------------------------------------------------------------------------------%
+%                                                                                          %
+%                         DOCUMENTI DI ECCELLENTE RESA TIPOGRAFICA                         %
+%                                     Ars gratia artis                                     %
+%                                                                                          %
+%                                                                                          %
+%     .,:::::::::::::-.      ...       :::.    :::::::.. :::::::-.      ...                %
+%     ;;;;'''' ;;,   `';, .;;;;;;;.    ;;`;;   ;;;;``;;;; ;;,   `';, .;;;;;;;.             %
+%      [[cccc  `[[     [[,[[     \[[, ,[[ '[[,  [[[,/[[[' `[[     [[,[[     \[[,           %
+%      $$""""   $$,    $$$$$,     $$$c$$$cc$$$c $$$$$$c    $$,    $$$$$,     $$$           %
+%      888oo,__ 888_,o8P'"888,_ _,88P 888   888,888b "88bo,888_,o8P'"888,_ _,88P           %
+%      """"YUMMMMMMMP"`    "YMMMMMP"  YMM   ""` MMMM   "W" MMMMP"`    "YMMMMMP"            %
+%     ::::::::::.    ...    :::::::..     .,-:::::   :::.    :::::::..       ...           %
+%      `;;;```.;;;.;;;;;;;. ;;;;``;;;;  ,;;;'````'   ;;`;;   ;;;;``;;;;   .;;;;;;;.        %
+%       `]]nnn]]',[[     \[[,[[[,/[[['  [[[         ,[[ '[[,  [[[,/[[['  ,[[     \[[,      %
+%        $$$""   $$$,     $$$$$$$$$c    $$$        c$$$cc$$$c $$$$$$c    $$$,     $$$      %
+%        888o    "888,_ _,88P888b "88bo,`88bo,__,o, 888   888,888b "88bo,"888,_ _,88P      %
+%        YMMMb     "YMMMMMP" MMMM   "W"   "YUMMMMMP"YMM   ""` MMMM   "W"   "YMMMMMP"       %
+%                                                                                          %
+%                                                                                          %
+%                                                                                          %
+%                         Addì 30 gennaio 2024 su HP ProBook 4320s                         %
+%                         (Ultima revisione addì 20 febbraio 2024)                         %
+%                                                                                          %
+%------------------------------------------------------------------------------------------%
+```
