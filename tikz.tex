@@ -1,0 +1,45 @@
+%\begin{figure}\centering
+%\begin{tikzpicture}
+%\begin{axis}[
+    %axis lines=middle,       % assi incrociati al centro
+    %xlabel={$x$}, ylabel={$y$},
+    %xmin=-5, xmax=5,
+    %ymin=-5, ymax=5,
+    %xtick={0},     % tacche sugli assi
+    %ytick={0},
+    %unbounded coords=jump,
+    %grid=both,               % griglia opzionale
+    %width=9cm, height=9cm, % dimensioni
+    %enlargelimits=false
+%]
+    % Funzione da tracciare
+    %\addplot[thick, samples=200, smooth, domain=-5:-2.01] {(x+1)/(x+2)};
+    %\addplot[thick, samples=200, smooth, domain=-1.99:5] {(x+1)/(x+2)};
+    %\addplot[dashed, samples=2, smooth, domain=-2.01:-1.99] {(x+1)/(x+2)};
+    %\addplot[dashed, samples=200, smooth, domain=-5:5] {-1};
+    %\addplot[black, mark=*] coordinates {(2,3)}
+        %node[above right] {$A$};
+%\end{axis}
+%\end{tikzpicture}\end{figure}
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        % Estensione assi
+        \def\X{2.5} % Estensione asse ascisse (4 per grafico singolo, 2.5 per grafici multipli)
+        \def\Y{2.25} % Estensione asse ordinate (3 per grafico singolo, 2.25 per grafici multipli)
+        
+        % Assi e origine
+        \draw[asse] (-\X,0)--(\X,0);
+            \node[below,font=\small] at (96/100*\X,0) {\(x\)};
+        \draw[asse] (0,-\Y)--(0,\Y);
+            \node[left,font=\small] at (0,96/100*\Y) {\(y\)};
+        \node[below left, font=\small] at (0,0) {\(0\)};
+
+        % Funzione
+        \draw[domain=-\X:\X,smooth,samples=400,variable=\x,black,thick]
+        plot ({\x}, {\x+3});
+    \end{tikzpicture}
+    \caption[]{}
+    \label{}
+\end{figure}

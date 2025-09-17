@@ -1,0 +1,362 @@
+% -------[ DEFINIZIONI DI STILE PERSONALI ]-----------------------------------------
+% -------[ Edoardo Porcaro ]--------------------------------------------------------
+% -------[ 11 agosto 2025 ]---------------------------------------------------------
+% -------[ v 1.2 ]------------------------------------------------------------------
+
+% -------[ COME USARE IL PACCHETTO ]------------------------------------------------
+%   1. Subito sotto a \documentclass{***}, incollare la seguente riga
+%       \PassOptionsToClass{11pt,a4paper,twoside,titlepage}{***}
+%           oppure riscrivere \documentclass{***} come
+%       \documentclass[11pt,a4paper,twoside,titlepage]{***}
+%   2. Caricare il pacchetto dopo \documentclass{***} con
+%       \input{porcaro}
+%   3. In questo file, andare alla riga
+%       pdftitle = {***},
+%      e sostituire a *** l'effettivo titolo del documento,
+%      affinché il metadato "Titolo" del pdf sia aggiornato correttamente
+% -------[ fine ]-------------------------------------------------------------------
+
+% -------[ INDICE DEL PACCHETTO ]---------------------------------------------------
+%   IMPOSTAZIONI INIZIALI
+%      Definizione dell'autore (mio nome e mail)
+%      Impostazione pagina, testo e caratteri
+%      Matematica
+%      Figure e grafici
+%   PERSONALIZZAZIONI
+%      Personalizzazione didascalie
+%      Personalizzazione intestazioni e piè di pagina
+%      Collegamenti e segnalibri
+%      Personalizzazione riferimenti
+%      Personalizzazione \section, \subsection e \subsubsection
+%    DEFINIZIONI PERSONALIZZATE
+%      Definizione \esempio
+%      Definizione \osservazione
+%      Definizioni matematiche personalizzate
+% -------[ fine ]-------------------------------------------------------------------
+
+% ----------------------------------------------------------------------------------
+% -------[ INIZIO CONTENUTO PACCHETTO ]---------------------------------------------
+% -------[ Non toccare se non si capisce cosa c'è scritto ]-------------------------
+% ----------------------------------------------------------------------------------
+
+% -------[ DEFINIZIONE DELL'AUTORE (MIO NOME E MAIL) ]------------------------------
+    \newcommand{\Autore}{Edoardo~Porcaro}
+    \newcommand{\EdoardoPorcaro}{\href{mailto:ufogamespa@gmail.com}{\Autore{}}}
+% -------[ fine ]-------------------------------------------------------------------
+
+% -------[ IMPOSTAZIONE PAGINA, TESTO E CARATTERI ]---------------------------------
+    \usepackage[utf8]{inputenc} % Codifica input UTF8
+    \usepackage[T1]{fontenc} % Codifica output T1 (supporto a lettere accentate europee)
+    \usepackage[italian]{babel} % Usa la lingua italiana (sillabazione e nomenclatura sezioni, indici e etichette (es. "figura"))
+        \usepackage{silence}\WarningFilter{latex}{Command \showhyphens has changed} % Dalla versione 2025 di pdfLaTeX esce questo warning che, con questo pacchetto e comando, nascondo dal log
+    \addto\captionsitalian{
+        \renewcommand{\abstractname}{Descrizione del corso} % Rinomina il "nome" dell'abstract
+        %\renewcommand{\listfigurename}{Indice delle figure} % Rinomina il "nome" del listoffigures
+        \renewcommand{\contentsname}{Indice dei contenuti}} % Rinomina il "nome" del tableofcontents
+    \usepackage{microtype} % Rende la tipografia più professionale e raffinata
+    \usepackage{multicol} % Per consentire un fine controllo su pagine e sezioni multicolonna
+    \usepackage{titlesec} % Usato per ridefinire le \subsubsection nel blocco [Personalizzazione \subsubsection]
+    \usepackage{enumitem} % Consente di personalizzare gli elenchi puntati o numerati (listati), modificandone margini, spaziatura, simboli, numerazioni
+    \usepackage{pifont} % Per numeretti cerchiati (es. \ding{172} = (1))
+    \usepackage{bbding} % Per \PencilRight in \es e \HandRight in \oss
+    %\setlength{\parindent}{0pt} % Rimuovi l'indentazione a inizio nuova riga
+    \setcounter{secnumdepth}{3} % Numerazione fino al livello \subsubsection [2]
+    \setcounter{tocdepth}{3} % Metti nel toc fino al livello \subsubsection [3]
+    \frenchspacing % Usa la spaziatura europea dopo i segni di punteggiatura
+% -------[ fine ]-------------------------------------------------------------------
+
+% -------[ MATEMATICA ]-------------------------------------------------------------
+    \usepackage{amsmath,amssymb,amsfonts,amsthm} % Pacchetti standard dell'AMS
+        \numberwithin{equation}{section} % Per avere la numerazione delle equazioni che segua quella delle \section
+    \usepackage{mathtools} % Fornisce comandi aggiuntivi per l’allineamento e la formattazione di equazioni (es. \coloneqq)
+    \usepackage{mathrsfs} % Per lettere calligrafiche "più corsive" (es. \mathscr{C})
+    \usepackage{bbm} % Per rendere qualsiasi carattere (numeri inclusi!) in stile blackboard bold (es. \mathbbm{R} -- che in questo caso è uguale a \mathbb{R})
+    \usepackage{cancel}
+    \usepackage{stmaryrd} % Introduce simboli matematici aggiuntivi non presenti negli standard LaTeX o AMS (es. \llbracket e \rrbracket)
+    \usepackage{siunitx}
+% -------[ fine ]-------------------------------------------------------------------
+
+% -------[ FIGURE E GRAFICI ]-------------------------------------------------------
+    \usepackage{graphicx}
+    \usepackage{tikz}
+        \usetikzlibrary{arrows.meta,positioning} % Per opzioni avanzate per le punte delle frecce e per il posizionamento relativo dei nodi
+        \usetikzlibrary{angles,quotes} % Per disegnare angoli ed etichette
+        \usetikzlibrary{patterns} % Per "escludere" aree del piano con i pattern
+        \usetikzlibrary{calc} % Per effettuare calcoli dentro le coordinate
+    % Definizione di elementi asse, tratteggio e tratteggio scuro per tutti i grafici TikZ
+        \tikzset{
+            asse/.style = {-{Stealth[length=6pt,width=6pt]}},
+            punto/.style = {circle, fill=black, inner sep=1.2pt},
+            punto/.style = {circle, fill=black, minimum size=1.2pt},
+            tratteggio/.style = {dashed, gray},
+            tratteggioscuro/.style = {dashed, black}
+        }
+    % Definizioni di stile per i grafici con pgfplots e l'ambiente axis
+    \usepackage{pgfplots}
+        \pgfplotsset{compat=1.18}
+
+        % Stile di default per tutti gli axis
+        \pgfplotsset{
+            every axis/.style={
+                axis lines=middle,
+                xlabel={$x$}, ylabel={$y$},
+                xmin=-5, xmax=5,
+                ymin=-5, ymax=5,
+                xtick={0}, ytick={0},
+                unbounded coords=jump,
+                enlargelimits=false,
+            },
+        % Stile di default per tutti gli \addplot
+            every axis plot/.style={
+                thick,
+                smooth,
+                samples=200
+            }
+        }
+    % Definizione di punto (come comando stand alone: la definizione in tikzset non si scala correttamente)
+        \newcommand{\punto}[1]{\filldraw (#1) circle (1.2pt)}
+% -------[ fine ]-------------------------------------------------------------------
+
+% -------[ PERSONALIZZAZIONE DIDASCALIE ]-------------------------------------------
+    \usepackage{caption}
+        \captionsetup{
+            labelfont = sf, % Etichetta (es. "Figura 1") in corsivo 
+            labelsep = period, % Separatore "." tra etichetta e testo (es. "Figura 1. Lorem ipsum") (di default è ":")
+            textfont = normalfont,% testo normale (puoi mettere it per corsivo)
+            %justification=raggedright, % evita giustificazione completa
+            %singlelinecheck=false, % applica lo stile anche se la didascalia è su una sola riga
+            margin = 1.5cm % Stringi specularmente i margini di 1,5cm di tutta la didascalia
+        }
+    \usepackage{subcaption}
+% -------[ fine ]-------------------------------------------------------------------
+
+% -------[ PERSONALIZZAZIONE INTESTAZIONI E PIÈ DI PAGINA ]-------------------------
+    \usepackage{fancyhdr}
+    % Carica i nomi di section/subsection da usare nelle intestazioni
+        \renewcommand{\sectionmark}[1]{\markboth{\thesection~\,#1}{}}
+        \renewcommand{\subsectionmark}[1]{\markright{\thesubsection~\,#1}}
+    % Pulisce intestazione e piè di pagina (per modificarli a piacimento)
+        \fancyhf{}
+    % Imposta l'altezza dell'intestazione affinché sia sufficiente (>13,5 pt)
+        \setlength{\headheight}{14pt}
+    % Nessuna linea orizzontale né sotto all'intestazione né sopra al piè di pagina
+        \renewcommand{\headrulewidth}{0pt}
+        \renewcommand{\footrulewidth}{0pt}
+    % Definisci lo stile di intestazioni e piè di pagina predefinito
+        \fancypagestyle{predefinito}{
+            % Lato esterno sinistro (Left Even): "[section]"
+                \fancyhead[LE]{\sffamily\nouppercase{\leftmark}}
+            % Lato esterno destro (Right Odd): "[subsection]"
+                \fancyhead[RO]{\sffamily\nouppercase{\rightmark}}
+            % Lati interni (Left Odd e Right Even): "Edoardo Porcaro"
+                \fancyhead[LO,RE]{\EdoardoPorcaro{}}
+            % Numeri di pagina nei lati esterni del piè di pagina (a sinistra nelle pagine pari e a destra nelle pagine dispari)
+                \fancyfoot[LE,RO]{\sffamily\thepage}
+        }
+    % Definisci lo stile di intestazioni e piè di pagina per le pagine in cui si apre una \section
+        \fancypagestyle{inizio-section}{
+            % Svuoto i lati esterni sinistro e destro affinché non appaiano indicazioni su sezione o sottosezione
+            %   Il resto lo lascio invariato, ossia come definito dallo stile "predefinito"
+                \fancyhead[LE,RO]{}
+        }
+    % Imposta lo stile di intestazioni e piè di pagina predefinito per tutto il documento (salvo eccezioni definite pagina per pagina nel corpo del documento che sovrascrivono lo stile predefinito)
+        \pagestyle{predefinito}
+% -------[ fine ]-------------------------------------------------------------------
+
+% -------[ COLLEGAMENTI E SEGNALIBRI ]----------------------------------------------
+    \usepackage{hyperref}
+    % Imposta le proprietà (i metadati) del documento PDF
+        \hypersetup{
+            linktoc = all, % Pure i numeri di pagina nel toc sono cliccabili
+            hidelinks,
+            pdftitle = {Riassunto di analisi matematica 1},
+            pdfauthor = {\Autore{}},
+            pdfsubject = {Analisi matematica 1},
+            %pdfkeywords = {keywords},
+            pdfcreator = {\Autore{}},
+            pdfproducer = {Computer di \Autore{}},
+            %pdfpagetransition = {Wipe /Di 270 /SS 0.5}
+            pdfdisplaydoctitle = true % Mostra il titolo (pdftitle) del documento nel titolo della finestra del lettore PDF (anzichè il nome del file)
+        }
+    % Rendi tutti i collegamenti (\href) in sans serif
+        \let\oldhref\href
+        \renewcommand{\href}[2]{\sffamily\oldhref{#1}{#2}}
+    % Metti nei segnalibri del PDF tutti i livelli fino al livello \paragraph [4]
+    \usepackage{bookmark}
+        \bookmarksetup{depth=4}
+% -------[ fine ]-------------------------------------------------------------------
+
+% -------[ PERSONALIZZAZIONE RIFERIMENTI ]------------------------------------------
+    \usepackage{varioref} % Per usare \vref, che indica anche la pagina se l'elemento a cui punta non è sulla stessa pagina del comando
+    \usepackage{cleveref} % Per usare \cref, che indica anche l'etichetta dell'elemento a cui punta (ad esempio, scrive automaticamente "fig." oltre suo numero)
+    %   Traduzioni italiane delle congiunzioni
+        \newcommand{\crefpairconjunction}{ e } % Tra due referenze
+        \newcommand{\crefmiddleconjunction}{, } % Tra referenze intermedie
+        \newcommand{\creflastconjunction}{ e } % Prima dell’ultima referenza
+    % Tutti i riferimenti resi in sans serif
+    %   Equazioni (eq., eqq., Eq. e Eqq.) (tolgo anche le parentesti altrimenti presenti)
+        \creflabelformat{equation}{\sffamily#1}
+        % Minuscola
+            \crefname{equation}{\sffamily eq.}{\sffamily eqq.}
+            \crefrangeformat{equation}{\sffamily eqq. da #1 a #2}
+        % Maiuscola
+            \Crefname{equation}{Eq.}{Eqq.}
+            \Crefrangeformat{equation}{\sffamily Eqq. da #1 a #2}
+    %   Figure (fig. e Fig.)
+        \creflabelformat{figure}{\sffamily#2#1#3}
+            \crefformat{figure}{\sffamily#2fig.~#1#3} % Con la minuscola
+            \Crefformat{figure}{\sffamily#2Fig.~#1#3} % Con la maiuscola
+    %   Tabelle (tab. e Tab.)
+        \crefformat{table}{\sffamily#2tab.~#1#3} % Con la minuscola
+        \Crefformat{table}{\sffamily#2Tab.~#1#3} % Con la maiuscola
+    %   \section (cap. e Cap.)
+        \crefformat{section}{\sffamily#2cap.~#1#3} % Con la minuscola
+        \Crefformat{section}{\sffamily#2Cap.~#1#3} % Con la maiuscola
+    %   \subsection (sez. e Sez.)
+        \crefformat{subsection}{\sffamily#2sez.~#1#3} % Con la minuscola
+        \Crefformat{subsection}{\sffamily#2Sez.~#1#3} % Con la maiuscola
+    %   \subsubsection (par. e Par.)
+        \crefformat{subsubsection}{\sffamily#2par.~#1#3} % Con la minuscola
+        \Crefformat{subsubsection}{\sffamily#2Par.~#1#3} % Con la maiuscola
+    %   Pagina
+        \crefformat{page}{\sffamily#2pag.~#1#3}
+        \Crefformat{page}{\sffamily#2Pag.~#1#3}
+    
+    %   Range di equazioni (eqq. e Eqq.) (tolgo anche le parentesti altrimenti presenti)
+        \crefrangeformat{equation}{\sffamily eqq. da #1 a #2}
+        \Crefrangeformat{equation}{\sffamily Eqq. da #1 a #2}
+    %   Range di figure (figg. e Figg.)
+        \crefrangeformat{figure}{\sffamily figg. da #1 a #2}
+        \Crefrangeformat{figure}{\sffamily Figg. da #1 a #2}
+    %   Range di tabelle (tabb. e Tabb.)
+    % TABLE
+    \crefrangeformat{table}{\sffamily tabb. da #1 a #2}
+    \Crefrangeformat{table}{\sffamily Tabb. da #1 a #2}
+    
+    % SECTION
+    \crefrangeformat{section}{\sffamily capp. da #1 a #2}
+    \Crefrangeformat{section}{\sffamily Capp. da #1 a #2}
+    
+    % SUBSECTION
+    \crefrangeformat{subsection}{\sffamily sezz. da #1 a #2}
+    \Crefrangeformat{subsection}{\sffamily Sezz. da #1 a #2}
+    
+    % SUBSUBSECTION
+    \crefrangeformat{subsubsection}{\sffamily parr. da #1 a #2}
+    \Crefrangeformat{subsubsection}{\sffamily Parr. da #1 a #2}
+    
+    % PAGE
+    \crefrangeformat{page}{pagg. da #1 a #2}
+    \Crefrangeformat{page}{Pagg. da #1 a #2}
+    % Per riferirsi sia all'oggetto sia alla pagina in cui è presente
+        \newcommand{\crefpage}[1]{\cref{#1} \textsf{a} \cpageref{#1}}
+% -------[ fine ]-------------------------------------------------------------------
+
+% -------[ PERSONALIZZAZIONE \SECTION, \SUBSECTION E \SUBSUBSECTION ]---------------
+    % Definisci il nuovo controllo condizionale \iffirstsubsection per verificare se è la prima subsection della section a cui appartiene
+        \newif\iffirstsubsection
+            \firstsubsectiontrue
+    % Riga orizzontale di separazione (HOrizontal rule)
+        \newcommand{\horule}{\noindent\rule{\linewidth}{0.4pt}}
+    % \SECTION
+        % Ridefinisci le \section affinché si aprano sempre a pagina nuova e, nella pagina in cui si aprono, non ci sia l'intestazione relativa a sezione o sottosezione (lati esterni sinistro e destro)
+        \let\ssection\section
+        \renewcommand{\section}{
+            \clearpage
+            \thispagestyle{inizio-section}
+            \firstsubsectiontrue % Dico che è iniziata una nuova section, affinché la prima subsection non abbia l'\horule
+            \ssection
+        }
+    % \SUBSECTION
+        % Ridefinisci le \subsection affinché, fuorché la prima di ogni section, abbiano tutte la riga di separazione (\horule)
+        \let\ssubsection\subsection
+        \renewcommand{\subsection}{
+            \iffirstsubsection % Se è la prima subsection dopo una nuova section,
+                \firstsubsectionfalse % allora avvisa che la prossima sarà la seconda (e adesso non mettere l'\horule
+            \else % Se non è la prima subsection dopo una nuova section,
+                \horule % allora stampa l'\horule
+            \fi
+            \ssubsection
+        }
+    % \SUBSUBSECTION
+        % Ridefinisci le \subsubsection affinché siano stilisticamente come dei paragrafi
+        \titleformat{\subsubsection}[runin] % [runin] affinché il testo che segue stia sulla stessa riga del titolo della subsection
+            {\normalfont\normalsize\bfseries} % Stile del titolo
+            {} % Etichetta (niente numero o simbolo prima del titolo)
+            {0pt} % Spazio tra l’etichetta e il titolo
+            {} % Codice da eseguire prima del titolo (nulla)
+            [.] % Codice da eseguire dopo il titolo (metti il punto)
+% -------[ fine ]-------------------------------------------------------------------
+
+% -------[ DEFINIZIONE \ESEMPIO ]---------------------------------------------------
+    % Manina (per mettere in risalto gli esempi nel testo)
+    \newcommand{\Matita}{
+        \normalfont\hspace{-0.25em}\raisebox{-0.3em}[0pt][0pt]{\scalebox{1.2}[1.1]{\PencilRight}}\hspace{0.1em}
+    }
+    % Definisci lo stile specifico del paragrafo "Esempio" (matita)
+    %   Comando: \es
+    %   \es*[opzionale]{obbligatorio}
+    %   *           :  indica se includere l'esempio nel toc e nei segnalibri PDF
+    %   opzionale   :  indica il titolo dell'esempio per il toc e i segnalibri PDF
+    %   obbligatorio:  indica il titolo dell'esempio visibile nel PDF
+        \NewDocumentCommand{\es}{s o m}{
+            \IfBooleanTF{#1} {
+            %   \es*{lorem}
+                {\paragraph*{\Matita{}\itshape #3.}}
+            }{
+            %   \es{lorem}
+                \IfNoValueTF{#2}
+                    {\paragraph[#3]{\Matita{}\itshape #3.}}
+            %   \es[ipsum]{lorem}
+                {\paragraph[#2]{\Matita{}\itshape #3.}}
+            }
+        }
+    % Comando per finire graficamente l'esempio (con l'inserimento di \PencilLeft)
+    %   \FineEs       se l'esempio finisce in mathmode (non inline)
+    %   \FineEsTesto  se l'esempio finisce con una normale riga di testo
+        \newcommand{\FineEs}{\tag*{\raisebox{-0.2em}[0pt][0pt]{\scalebox{1}[1]{\PencilLeft}}}}
+        \newcommand{\FineEsTesto}{\hfill\raisebox{-0.2em}[0pt][0pt]{\scalebox{1}[1]{\PencilLeft}}}
+% -------[ fine ]-------------------------------------------------------------------
+
+% -------[ DEFINIZIONE \OSSERVAZIONE ]----------------------------------------------
+    % Definisci lo stile specifico del paragrafo "Osservazione/Nota bene" (manina)
+    %   Comandi: \oss \osservazione \nb \notabene
+        \newcommand{\oss}[1]{
+            \paragraph[Osservazione]{\normalfont % No grassetto
+                \raisebox{-0.1em}[0pt][0pt]{\scalebox{1.2}[1]{\HandRight}}\hspace{-0.4em} % Manina
+                {\itshape #1} % Eventuale titolo dell'osservazione tutto in corsivo (punto escluso)
+            }
+        }
+        \newcommand{\osservazione}[1]{\oss{#1}}
+        \newcommand{\nb}[1]{\oss{#1}}
+        \newcommand{\notabene}[1]{\oss{#1}}
+% -------[ fine ]-------------------------------------------------------------------
+
+% -------[ DEFINIZIONI MATEMATICHE PERSONALIZZATE ]---------------------------------
+    \newcommand{\co}[2]{\left(#1\,,#2\right)} % Coppia Ordinata \co12 => (1 , 2)
+    \renewcommand{\i}{\mathrm i} % Unità immaginaria \i
+    \renewcommand{\Re}{\operatorname{Re}} % Parte reale dei numeri complessi \Re
+    \renewcommand{\Im}{\operatorname{Im}} % Parte immaginaria dei numeri compessi \Im
+    \newcommand{\an}{\left\{a_n\right\}} % Successione a_n \an
+    \renewcommand{\d}{\textrm d} % Differeziale d
+    
+    % Insiemistica
+        \newcommand{\Set}[1]{\left\{ #1 \right\}} % Rappresentazione d'insieme per elencazione \Set{1,2,3} => {1,2,3}
+        \newcommand{\N}{\mathbb{N}} % Insieme dei numeri naturali
+        \newcommand{\Z}{\mathbb{Z}} % Insieme dei numeri relativi
+        \newcommand{\Q}{\mathbb{Q}} % Insieme dei numeri razionali
+        \newcommand{\R}{\mathbb{R}} % Insieme dei numeri reali
+        \newcommand{\C}{\mathbb{C}} % Insieme dei numeri complessi
+    
+    % Lettere greche preferite (inverto quella di default e quella alternativa)
+        % epsilon
+            \let\altepsilon\epsilon % ALTernativa (sulla base delle mie pref.)
+            \let\corepsilon\varepsilon % CORretta (sulla base delle mie pref.)
+            \renewcommand{\epsilon}{\corepsilon}
+            \renewcommand{\varepsilon}{\altepsilon}
+        % phi
+            \let\altphi\phi % ALTernativa (sulla base delle mie pref.)
+            \let\corphi\varphi % CORretta (sulla base delle mie pref.)
+            \renewcommand{\phi}{\corphi}
+            \renewcommand{\varphi}{\altphi}
+% -------[ fine ]-------------------------------------------------------------------

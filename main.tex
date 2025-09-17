@@ -1,0 +1,48 @@
+\documentclass[11pt,a4paper,twoside,titlepage]{article}
+
+% Carica pacchetto personale
+\input{porcaro}
+
+% Informazioni sul corso
+\newcommand{\NomeCorso}{<!-- TITOLO CORSO QUI -->}
+\newcommand{\NomeProf}{<!-- NOME PROF QUI -->}
+\newcommand{\AnnoAccademico}{2025/2026}
+
+% Titolo, autore e data
+\title{\sffamily \NomeCorso\\\vspace{6pt}\Large Prof. \NomeProf\vspace{-8pt}}
+\author{\sffamily Appunti di \EdoardoPorcaro}
+\date{\sffamily Anno accademico \AnnoAccademico}
+
+
+% -------[ DEFINIZIONI PERSONALIZZATE ]---------------------------------------------
+    
+    %  <!-- QUI -->
+    
+% -------[ fine ]-------------------------------------------------------------------
+
+% -------[ INIZIO DOCUMENTO ]-------------------------------------------------------
+\begin{document}
+
+% Copertina
+\maketitle
+\thispagestyle{empty}
+\cleardoublepage
+
+% Introduzione
+\begin{abstract}
+    <!-- TESTO DEL RIASSUNTO -->
+\end{abstract}
+\thispagestyle{empty}
+\cleardoublepage
+
+% Indice dei contenuti e delle figure
+\tableofcontents
+\clearpage
+\listoffigures
+\clearpage
+
+% Contenuto del documento
+\input{contenuto}
+
+\end{document}
+% -------[ FINE DOCUMENTO ]---------------------------------------------------------
