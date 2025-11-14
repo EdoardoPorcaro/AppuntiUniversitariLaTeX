@@ -61,6 +61,20 @@ Sebbene i comandi che ho introdotto io da zero siano contenuti nella successiva 
 
 Com'è ovvio che sia, i seguenti comandi funzionano solo in math mode.
 
+#### Ambienti
+
+Tutti questi ambienti generano equazioni in display math mode; pertanto, questa specifica verrà omessa in tutta la tabella seguente per brevità.
+
+| Ambiente | Numerazione righe | Incolonna? | Deve stare dentro l'ambiente `equation`? | Pacchetto |
+| - | - | - | - | - |
+| `equation` | No | Sì | -- | |
+| `align` | Ciasuna riga | Sì | No | |
+| `gather` | Ciasuna riga | No | No | |
+| `split` | Un solo numero per tutto l'ambiente | Sì | Sì | |
+| `multline` | Un solo numero per tutto l'ambiente | No | Sì | |
+
+#### Altri comandi
+
 | Comando | Descrizione | Pacchetto |
 | - | - | - |
 `\cancel{math}`, `\xcancel{}`, `\cancelto{}`, … | | [`cancel`](https://ctan.org/pkg/cancel)
