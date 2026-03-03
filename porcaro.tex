@@ -1,24 +1,11 @@
 % -------[ DEFINIZIONI DI STILE PERSONALI ]-----------------------------------------
 % -------[ Edoardo Porcaro ]--------------------------------------------------------
-% -------[ 11 agosto 2025 ]---------------------------------------------------------
-% -------[ v 1.2 ]------------------------------------------------------------------
-
-% -------[ COME USARE IL PACCHETTO ]------------------------------------------------
-%   1. Subito sotto a \documentclass{***}, incollare la seguente riga
-%       \PassOptionsToClass{11pt,a4paper,twoside,titlepage}{***}
-%           oppure riscrivere \documentclass{***} come
-%       \documentclass[11pt,a4paper,twoside,titlepage]{***}
-%   2. Caricare il pacchetto dopo \documentclass{***} con
-%       \input{porcaro}
-%   3. In questo file, andare alla riga
-%       pdftitle = {***},
-%      e sostituire a *** l'effettivo titolo del documento,
-%      affinché il metadato "Titolo" del pdf sia aggiornato correttamente
-% -------[ fine ]-------------------------------------------------------------------
+% -------[ 03 marzo 2026] ----------------------------------------------------------
+% -------[ v 1.3 ]------------------------------------------------------------------
 
 % -------[ INDICE DEL PACCHETTO ]---------------------------------------------------
 %   IMPOSTAZIONI INIZIALI
-%      Definizione dell'autore (mio nome e mail)
+%      %Definizione dell'autore (mio nome e mail)
 %      Impostazione pagina, testo e caratteri
 %      Matematica
 %      Figure e grafici
@@ -26,6 +13,7 @@
 %      Personalizzazione didascalie
 %      Personalizzazione intestazioni e piè di pagina
 %      Collegamenti e segnalibri
+%      Appendici e acronimi
 %      Personalizzazione riferimenti
 %      Personalizzazione \section, \subsection e \subsubsection
 %    DEFINIZIONI PERSONALIZZATE
@@ -40,8 +28,8 @@
 % ----------------------------------------------------------------------------------
 
 % -------[ DEFINIZIONE DELL'AUTORE (MIO NOME E MAIL) ]------------------------------
-    \newcommand{\Autore}{Edoardo~Porcaro}
-    \newcommand{\EdoardoPorcaro}{\href{mailto:ufogamespa@gmail.com}{\Autore{}}}
+%    \newcommand{\Autore}{Edoardo~Porcaro}
+%    \newcommand{\EdoardoPorcaro}{\href{mailto:ufogamespa@gmail.com}{\Autore{}}}
 % -------[ fine ]-------------------------------------------------------------------
 
 % -------[ IMPOSTAZIONE PAGINA, TESTO E CARATTERI ]---------------------------------
@@ -52,7 +40,10 @@
     \addto\captionsitalian{
         \renewcommand{\abstractname}{Descrizione del corso} % Rinomina il "nome" dell'abstract
         %\renewcommand{\listfigurename}{Indice delle figure} % Rinomina il "nome" del listoffigures
-        \renewcommand{\contentsname}{Indice dei contenuti}} % Rinomina il "nome" del tableofcontents
+        \renewcommand{\contentsname}{Indice dei contenuti} % Rinomina il "nome" del tableofcontents
+	\renewcommand{\appendixname}{Appendice} % Rinomina il "nome" della singola appendice
+	\renewcommand{\appendixpagename}{Appendici} % Rinomina il "nome" dell'insieme delle appendici
+        \renewcommand{\appendixtocname}{Appendici}} % Rinomina il "nome" dell'insieme delle appendici per il toc
     \usepackage{microtype} % Rende la tipografia più professionale e raffinata
     \usepackage{multicol} % Per consentire un fine controllo su pagine e sezioni multicolonna
     \usepackage{titlesec} % Usato per ridefinire le \subsubsection nel blocco [Personalizzazione \subsubsection]
@@ -149,7 +140,7 @@
             % Lato esterno destro (Right Odd): "[subsection]"
                 \fancyhead[RO]{\sffamily\nouppercase{\rightmark}}
             % Lati interni (Left Odd e Right Even): "Edoardo Porcaro"
-                \fancyhead[LO,RE]{\EdoardoPorcaro{}}
+                \fancyhead[LO,RE]{\MailAutore{}}
             % Numeri di pagina nei lati esterni del piè di pagina (a sinistra nelle pagine pari e a destra nelle pagine dispari)
                 \fancyfoot[LE,RO]{\sffamily\thepage}
         }
@@ -168,10 +159,13 @@
     % Imposta le proprietà (i metadati) del documento PDF
         \hypersetup{
             linktoc = all, % Pure i numeri di pagina nel toc sono cliccabili
-            hidelinks,
-            pdftitle = {Riassunto di analisi matematica 1},
+            hidelinks, % Toglie i rettangoli intorno ai collegamenti
+	    %plainpages=false,
+	    %pdfpagelabels=true,
+	    %hypertexnames=true,
+            pdftitle = {\NomeCorso},
             pdfauthor = {\Autore{}},
-            pdfsubject = {Analisi matematica 1},
+            %pdfsubject = {subject},
             %pdfkeywords = {keywords},
             pdfcreator = {\Autore{}},
             pdfproducer = {Computer di \Autore{}},
@@ -184,6 +178,15 @@
     % Metti nei segnalibri del PDF tutti i livelli fino al livello \paragraph [4]
     \usepackage{bookmark}
         \bookmarksetup{depth=4}
+% -------[ fine ]-------------------------------------------------------------------
+
+% -------[ APPENDICI E ACRONIMI ]----------------------------------------------
+    % Consenti la creazione e la gestione di appendici finali
+    \usepackage[title]{appendix}
+    % Gestisci gli acronimi con il pacchetto glossaries
+    \usepackage[acronym]{glossaries}
+    \setacronymstyle{long-short}
+    \makeglossaries
 % -------[ fine ]-------------------------------------------------------------------
 
 % -------[ PERSONALIZZAZIONE RIFERIMENTI ]------------------------------------------
@@ -200,7 +203,7 @@
             \crefname{equation}{\sffamily eq.}{\sffamily eqq.}
             \crefrangeformat{equation}{\sffamily eqq. da #1 a #2}
         % Maiuscola
-            \Crefname{equation}{Eq.}{Eqq.}
+            \Crefname{equation}{\sffamily Eq.}{\sffamily Eqq.}
             \Crefrangeformat{equation}{\sffamily Eqq. da #1 a #2}
     %   Figure (fig. e Fig.)
         \creflabelformat{figure}{\sffamily#2#1#3}
@@ -248,6 +251,7 @@
     % PAGE
     \crefrangeformat{page}{pagg. da #1 a #2}
     \Crefrangeformat{page}{Pagg. da #1 a #2}
+
     % Per riferirsi sia all'oggetto sia alla pagina in cui è presente
         \newcommand{\crefpage}[1]{\cref{#1} \textsf{a} \cpageref{#1}}
 % -------[ fine ]-------------------------------------------------------------------
@@ -333,15 +337,18 @@
 % -------[ fine ]-------------------------------------------------------------------
 
 % -------[ DEFINIZIONI MATEMATICHE PERSONALIZZATE ]---------------------------------
-    \newcommand{\co}[2]{\left(#1\,,#2\right)} % Coppia Ordinata \co12 => (1 , 2)
-    \renewcommand{\i}{\mathrm i} % Unità immaginaria \i
     \renewcommand{\Re}{\operatorname{Re}} % Parte reale dei numeri complessi \Re
     \renewcommand{\Im}{\operatorname{Im}} % Parte immaginaria dei numeri compessi \Im
-    \newcommand{\an}{\left\{a_n\right\}} % Successione a_n \an
+    \renewcommand{\i}{\mathrm i} % Unità immaginaria \i
     \renewcommand{\d}{\textrm d} % Differeziale d
+
+    % Operatori parentesi
+    % Usare versione stellata * affinché i delimitatori si dimensionino automaticamente
+        \DeclarePairedDelimiter{\abs}{\lvert}{\rvert} % \abs{x} => |x|
+        \DeclarePairedDelimiter{\norm}{\lVert}{\rVert} % \norm{x} => ||x||
+        \DeclarePairedDelimiter{\set}{\{}{\}} % \set{x} => {x}
     
     % Insiemistica
-        \newcommand{\Set}[1]{\left\{ #1 \right\}} % Rappresentazione d'insieme per elencazione \Set{1,2,3} => {1,2,3}
         \newcommand{\N}{\mathbb{N}} % Insieme dei numeri naturali
         \newcommand{\Z}{\mathbb{Z}} % Insieme dei numeri relativi
         \newcommand{\Q}{\mathbb{Q}} % Insieme dei numeri razionali
@@ -350,13 +357,13 @@
     
     % Lettere greche preferite (inverto quella di default e quella alternativa)
         % epsilon
-            \let\altepsilon\epsilon % ALTernativa (sulla base delle mie pref.)
-            \let\corepsilon\varepsilon % CORretta (sulla base delle mie pref.)
+            \let\altepsilon\epsilon % ALTernativa (sulla base delle mie preferenze)
+            \let\corepsilon\varepsilon % CORretta (sulla base delle mie preferenze)
             \renewcommand{\epsilon}{\corepsilon}
             \renewcommand{\varepsilon}{\altepsilon}
         % phi
-            \let\altphi\phi % ALTernativa (sulla base delle mie pref.)
-            \let\corphi\varphi % CORretta (sulla base delle mie pref.)
+            \let\altphi\phi % ALTernativa (sulla base delle mie preferenze)
+            \let\corphi\varphi % CORretta (sulla base delle mie preferenze)
             \renewcommand{\phi}{\corphi}
             \renewcommand{\varphi}{\altphi}
 % -------[ fine ]-------------------------------------------------------------------

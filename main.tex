@@ -1,23 +1,27 @@
-\documentclass[11pt,a4paper,twoside,titlepage]{article}
+\documentclass[a4paper,twoside,titlepage]{article}
 
-% Carica pacchetto personale
-\input{porcaro}
-
-% Informazioni sul corso
+% Informazioni sull'autore e sul corso
+\newcommand{\Autore}{Edoardo~Porcaro}
+\newcommand{\MailAutore}{\href{mailto:ufogamespa@gmail.com}{\Autore{}}}
 \newcommand{\NomeCorso}{<!-- TITOLO CORSO QUI -->}
 \newcommand{\NomeProf}{<!-- NOME PROF QUI -->}
 \newcommand{\AnnoAccademico}{2025/2026}
 
+% Carica pacchetto personale
+\input{porcaro}
+
 % Titolo, autore e data
-\title{\sffamily \NomeCorso\\\vspace{6pt}\Large Prof. \NomeProf\vspace{-8pt}}
-\author{\sffamily Appunti di \EdoardoPorcaro}
+\title{\sffamily \NomeCorso\\\vspace{6pt}\Large Prof.~\NomeProf\vspace{-8pt}}
+\author{\sffamily Appunti di \Autore}
 \date{\sffamily Anno accademico \AnnoAccademico}
 
-
-% -------[ DEFINIZIONI PERSONALIZZATE ]---------------------------------------------
-    
+% -------[ DEFINIZIONI PERSONALIZZATE ]--------------------------------------------- 
     %  <!-- QUI -->
-    
+% -------[ fine ]-------------------------------------------------------------------
+
+% -------[ ACRONIMI ]---------------------------------------------------------------
+    % <!-- QUI -->
+    % \newacronym{api}{API}{Application Program Interface} --> \gls{api}
 % -------[ fine ]-------------------------------------------------------------------
 
 % -------[ INIZIO DOCUMENTO ]-------------------------------------------------------
@@ -30,7 +34,7 @@
 
 % Introduzione
 \begin{abstract}
-    <!-- TESTO DEL RIASSUNTO -->
+    % <!-- TESTO DEL RIASSUNTO -->
 \end{abstract}
 \thispagestyle{empty}
 \cleardoublepage
@@ -38,11 +42,20 @@
 % Indice dei contenuti e delle figure
 \tableofcontents
 \clearpage
-\listoffigures
-\clearpage
+%\listoffigures
+%\clearpage
+%\listoftables
+%\clearpage
 
 % Contenuto del documento
 \input{contenuto}
+
+% Appendici
+\begin{appendices}
+    % Appendice acronimi
+    \section[Acronimi]{Acronimi}
+    \printglossary[type=\acronymtype,title={Acronimi}]
+\end{appendices}
 
 \end{document}
 % -------[ FINE DOCUMENTO ]---------------------------------------------------------

@@ -1,0 +1,26 @@
+%1 [RISOLTO]
+%Quando una \section si apre a destra (pagina dispari), nonostante la sua prima \subsection sia presente nella stessa pagina, nell'header in alto a destra non appare nulla
+
+%2 [RISOLTO] -> non esistono mathcal né mathscr per lettere minuscole
+%\mathcal{l} oppure \mathscr{l} (e verosimilmente qualsiasi altra lettera corsiva) non appare nel testo SENZA ALCUN ERRORE NÉ WARNING
+%\R in anteprima da codice dà 4
+
+%3 [RISOLTO]
+%\es{} e \oss occasionalmente non producono il titolo nè \PencilRight/\HandRight
+
+%4
+Personalizzare \cref per i range
+ad esempio quando \crefrange{eq:1}{eq:3} --> nel testo: eqq. da 1.1 a 1.3
+
+%5
+Fare lavoro di ammodernamento con box (tcolorbox) per \es e \oss
+
+% 6 [RISOLTO]
+%Mettere supporto completo e "corretto" ad acronimi
+
+% 7
+Quando compilo (anche solo il template) mi dà warning "destination with the same identifier (name{page.1}) has been already used , duplicate ignored"
+Però, nonostante il warning, tutto funziona come previsto e inteso.
+
+% 8
+I numeri di equazioni, quando referenziate da \cref, non sono cliccabili e quindi non portano all'equazione a cui si riferiscono.

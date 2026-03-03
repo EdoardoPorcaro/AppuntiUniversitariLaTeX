@@ -1,0 +1,1 @@
+Aggiunti \DeclarePairedDelimiters per \abs e \norm e aggiornato con questo stile \set (rinominato da \Set). Aggiunto il supporto agli acronimi e alle appendici. Tolta la guida su come usare il pacchetto in porcaro.tex. Spostate le informazioni personali \Autore e \MailAutore in main.tex. Aggiornato problemi-noti.txt (rinominato da problemi-noti.tex) con nuovi problemi scoperti.
