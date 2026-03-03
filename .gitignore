@@ -1,0 +1,21 @@
+# Ignora tutto
+*
+
+# Permetti cartelle (necessario per aprire le sottocartelle)
+!*/
+
+# Permetti file senza estensione
+!*
+
+# Ignora tutti i file con estensione
+*.*
+
+# Permetti solo queste estensioni
+!*.tex
+!*.pdf
+!*.txt
+!*.md
+
+# Permetti il file .gitignore e il file .gitmodules
+!.gitignore
+!.gitmodules
