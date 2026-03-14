@@ -1,11 +1,10 @@
 % -------[ DEFINIZIONI DI STILE PERSONALI ]-----------------------------------------
 % -------[ Edoardo Porcaro ]--------------------------------------------------------
-% -------[ 03 marzo 2026] ----------------------------------------------------------
-% -------[ v 1.3 ]------------------------------------------------------------------
+% -------[ 14 marzo 2026] ----------------------------------------------------------
+% -------[ v 1.3.1 ]----------------------------------------------------------------
 
 % -------[ INDICE DEL PACCHETTO ]---------------------------------------------------
 %   IMPOSTAZIONI INIZIALI
-%      %Definizione dell'autore (mio nome e mail)
 %      Impostazione pagina, testo e caratteri
 %      Matematica
 %      Figure e grafici
@@ -27,11 +26,6 @@
 % -------[ Non toccare se non si capisce cosa c'è scritto ]-------------------------
 % ----------------------------------------------------------------------------------
 
-% -------[ DEFINIZIONE DELL'AUTORE (MIO NOME E MAIL) ]------------------------------
-%    \newcommand{\Autore}{Edoardo~Porcaro}
-%    \newcommand{\EdoardoPorcaro}{\href{mailto:ufogamespa@gmail.com}{\Autore{}}}
-% -------[ fine ]-------------------------------------------------------------------
-
 % -------[ IMPOSTAZIONE PAGINA, TESTO E CARATTERI ]---------------------------------
     \usepackage[utf8]{inputenc} % Codifica input UTF8
     \usepackage[T1]{fontenc} % Codifica output T1 (supporto a lettere accentate europee)
@@ -45,6 +39,7 @@
 	\renewcommand{\appendixpagename}{Appendici} % Rinomina il "nome" dell'insieme delle appendici
         \renewcommand{\appendixtocname}{Appendici}} % Rinomina il "nome" dell'insieme delle appendici per il toc
     \usepackage{microtype} % Rende la tipografia più professionale e raffinata
+    \usepackage{emptypage} % Rende automaticamente le pagine bianche inserite senza né intestazione né piè di pagina (equivalente a scrivere \thispagestyle{empty} per ciascuna pagina bianca)
     \usepackage{multicol} % Per consentire un fine controllo su pagine e sezioni multicolonna
     \usepackage{titlesec} % Usato per ridefinire le \subsubsection nel blocco [Personalizzazione \subsubsection]
     \usepackage{enumitem} % Consente di personalizzare gli elenchi puntati o numerati (listati), modificandone margini, spaziatura, simboli, numerazioni
@@ -184,8 +179,9 @@
     % Consenti la creazione e la gestione di appendici finali
     \usepackage[title]{appendix}
     % Gestisci gli acronimi con il pacchetto glossaries
-    \usepackage[acronym]{glossaries}
-    \setacronymstyle{long-short}
+    \usepackage{relsize} % Necessario per il funzionamento di \setacronymstyle{long-sm-short}
+    \usepackage[acronym,shortcuts]{glossaries} % L'opzione "shortcuts" permette di usare indifferentemente pure i comandi del pacchetto acronyms
+    \setacronymstyle{long-sm-short} % Definisco lo stile degli acronimi: prima la forma estesa (alla prima occorrenza) e poi la forma corta/acronimo in maiuscoletto (tra parentesi alla prima occorrenza) 
     \makeglossaries
 % -------[ fine ]-------------------------------------------------------------------
 

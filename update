@@ -1,2 +1,2 @@
-v1.3
-Aggiunti \DeclarePairedDelimiters per \abs e \norm e aggiornato con questo stile \set (rinominato da \Set). Aggiunto il supporto agli acronimi e alle appendici. Tolta la guida su come usare il pacchetto in porcaro.tex. Spostate le informazioni personali \Autore e \MailAutore in main.tex. Aggiornato problemi-noti.txt (rinominato da problemi-noti.tex) con nuovi problemi scoperti.
+v1.3.1
+Affinata la gestione degli acronimi, con il supporto ai comandi del pacchetto acronyms (mediante l'opzione shortcuts del pacchetto glossaries), e la resa degli stessi, con lo stile \setacronymstyle{long-sm-short} (per cui si è resa necessaria l'aggiunta del pacchetto relsize). Aggiunto il pacchetto emptypage e, conseguentemente, rimosse le ridefinizioni manuali di stile pagina \thispagestyle{empty}.

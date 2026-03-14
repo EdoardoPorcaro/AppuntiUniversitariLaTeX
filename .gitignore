@@ -5,14 +5,14 @@
 !*/
 
 # Permetti file senza estensione
-!*
+#!*
 
 # Ignora tutti i file con estensione
 *.*
 
 # Permetti solo queste estensioni
 !*.tex
-!*.pdf
+#!*.pdf
 !*.txt
 !*.md
 
